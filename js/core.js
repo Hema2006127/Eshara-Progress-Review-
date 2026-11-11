@@ -23,11 +23,38 @@ const PAGES=[
   ]
  },
  {
+  "file": "research.html",
+  "name": "Research",
+  "slides": [
+   "Research: literature review",
+   "Research: comparison",
+   "Research: market gap",
+   "Research: apps compared",
+   "Research: comparison 1 · translation, avatar and AI",
+   "Research: comparison 2 · learning, streak, competition and kids",
+   "Research: comparison 3 · chat, live communication and services",
+   "Research: what makes Eshara different"
+  ]
+ },
+ {
   "file": "diagrams.html",
   "name": "Diagrams",
   "slides": [
-   "Key diagram: sign to text",
-   "All diagrams"
+   "Key diagram: sign to text"
+  ]
+ },
+ {
+  "file": "ai.html",
+  "name": "AI",
+  "slides": [
+   "AI: headline result",
+   "AI: dashboard",
+   "AI: how it works",
+   "AI: architecture",
+   "AI: data",
+   "AI: training workflow",
+   "AI: problems and fixes",
+   "AI: next steps"
   ]
  },
  {
@@ -55,34 +82,6 @@ const PAGES=[
   ]
  },
  {
-  "file": "research.html",
-  "name": "Research",
-  "slides": [
-   "Research: literature review",
-   "Research: comparison",
-   "Research: market gap",
-   "Research: apps compared",
-   "Research: comparison 1 · translation, avatar and AI",
-   "Research: comparison 2 · learning, streak, competition and kids",
-   "Research: comparison 3 · chat, live communication and services",
-   "Research: what makes Eshara different"
-  ]
- },
- {
-  "file": "ai.html",
-  "name": "AI",
-  "slides": [
-   "AI: headline result",
-   "AI: dashboard",
-   "AI: how it works",
-   "AI: architecture",
-   "AI: data",
-   "AI: training workflow",
-   "AI: problems and fixes",
-   "AI: next steps"
-  ]
- },
- {
   "file": "backend.html",
   "name": "Backend",
   "slides": [
@@ -98,6 +97,7 @@ const PAGES=[
   ]
  }
 ];
+const AI_PART=PAGES.findIndex(p=>p.file==='ai.html');
 const PART=+document.body.dataset.part;
 const OFFSET=PAGES.slice(0,PART).reduce((a,p)=>a+p.slides.length,0);
 const TOTAL=PAGES.reduce((a,p)=>a+p.slides.length,0);
@@ -106,8 +106,8 @@ const goPage=(p,k)=>{location.href=PAGES[p].file+'#slide-'+k;};
 /* ---------- navigation ---------- */
 const slides=$$('.slide');let cur=0;const onEnter={};const printHooks=[];
 const partsNav=$('#parts');
-PAGES.forEach((p,i)=>{const b=document.createElement('button');b.className='part'+(i===7?' ai':'');b.innerHTML=(i?'<b>'+i+'</b>':'')+p.name;if(i===PART)b.setAttribute('aria-current','page');b.onclick=()=>i===PART?go(0):goPage(i,1);partsNav.appendChild(b);});
-{let g=0;PAGES.forEach((p,pi)=>p.slides.forEach((lab,k)=>{g++;const d=document.createElement('button');d.className='dot'+(pi===7?' ai':'');d.setAttribute('aria-label','Slide '+g+': '+lab);d.onclick=()=>pi===PART?go(k):goPage(pi,k+1);$('#dots').appendChild(d);}));}
+PAGES.forEach((p,i)=>{const b=document.createElement('button');b.className='part'+(i===AI_PART?' ai':'');b.innerHTML=(i?'<b>'+i+'</b>':'')+p.name;if(i===PART)b.setAttribute('aria-current','page');b.onclick=()=>i===PART?go(0):goPage(i,1);partsNav.appendChild(b);});
+{let g=0;PAGES.forEach((p,pi)=>p.slides.forEach((lab,k)=>{g++;const d=document.createElement('button');d.className='dot'+(pi===AI_PART?' ai':'');d.setAttribute('aria-label','Slide '+g+': '+lab);d.onclick=()=>pi===PART?go(k):goPage(pi,k+1);$('#dots').appendChild(d);}));}
 function go(i,fromHash){
   if(!fromHash&&i<0){if(PART>0)goPage(PART-1,PAGES[PART-1].slides.length);return;}
   if(!fromHash&&i>=slides.length){if(PART<PAGES.length-1)goPage(PART+1,1);return;}

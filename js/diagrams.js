@@ -24,28 +24,9 @@ const co=$('#d4callouts');
 const fitBtn=document.createElement('button');fitBtn.className='callout on';fitBtn.innerHTML='<b>Whole diagram</b><span>Sign to text is the core of Eshara and the flow the AI model serves.</span>';co.appendChild(fitBtn);
 fitBtn.onclick=()=>{$$('#d4callouts .callout').forEach(x=>x.classList.remove('on'));fitBtn.classList.add('on');v4.fit();};
 D4.forEach(c=>{const b=document.createElement('button');b.className='callout';b.innerHTML='<b>'+c.t+'</b><span>'+c.d+'</span>';b.onclick=()=>{$$('#d4callouts .callout').forEach(x=>x.classList.remove('on'));b.classList.add('on');v4.focus(c.f[0],c.f[1],c.f[2]);};co.appendChild(b);});
-const DIAG=[
- ['d6','Diagram 4','Sign to text','Camera recognition: permissions, AI readiness, confidence and result review.'],
- ['d3','Diagram 1','Overall app','App launch, session check, main navigation and links to every other flow.'],
- ['d4','Diagram 2','Auth & age','Register, login, recovery and the date-of-birth age gate (under 13 is provisional pending legal review).'],
- ['d7','Diagram 5','Text & voice to sign','Typed or spoken Arabic turned into avatar signing.'],
- ['d5','Diagram 3','Kids Mode','Proposed kids experience with a guardian gate.'],
- ['d8','Diagram 6','Learning','Dictionary, lessons, practice and gamification.'],
- ['d9','Diagram 7','Chat & calls','Chat threads and calls.'],
- ['d10','Diagram 8','History','Translation history.'],
- ['d11','Diagram 9','Emergency','Emergency assistance, including guest access.'],
- ['d12','Diagram 10','Settings','Settings and profile.'],
- ['d2','Deliverable 1','Information architecture','Public, regular and Kids Mode experiences and their screens.'],
- ['d13','Deliverable 6','Dependency chain','Which features depend on which.']];
-const vAll=viewer($('#dviewAll'));const dt=$('#dtabs');
-function pickD(i){$$('#dtabs .chip').forEach((c,j)=>c.setAttribute('aria-pressed',j===i));const d=DIAG[i];vAll.load('img/flow/'+d[0]+'.svg',d[1]+' '+d[2]);$('#dnote').innerHTML='<b style="color:var(--fg)">'+d[1]+' · '+d[2]+'.</b> '+d[3];}
-DIAG.forEach((d,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=(i===0?'★ ':'')+d[2];b.onclick=()=>pickD(i);dt.appendChild(b);});
-const iD4=idxOf('Key diagram: sign to text'),iDA=idxOf('All diagrams');
+const iD4=idxOf('Key diagram: sign to text');
 onEnter[iD4]=()=>v4.load('img/flow/d6.svg','Diagram 4: sign to text flow');
-onEnter[iDA]=()=>{if(!$('#dviewAll img').getAttribute('src'))pickD(1);else vAll.fit();};
 
 printHooks.push(()=>{
-  const tpl=$('section[aria-label="All diagrams"]');tpl.classList.add('print-skip');let after=tpl;
-  DIAG.slice(1).forEach(d=>{const s=document.createElement('section');s.className='slide on';s.innerHTML='<div class="wrap"><div><p class="eyebrow">Part 2 · Diagrams</p><h2>'+d[1]+' · '+d[2]+'</h2></div><div style="background:#fff;border-radius:14px;height:690px;display:flex;align-items:center;justify-content:center;padding:10px"><img src="img/flow/'+d[0]+'.svg" alt="'+d[2]+'" style="max-height:100%;max-width:100%"></div><p class="muted" style="font-size:13px">'+d[3]+'</p></div>';after.after(s);after=s;});
   const d4=$('#dview4');d4.innerHTML='<img src="img/flow/d6.svg" alt="Diagram 4" style="position:static;max-width:100%;max-height:100%;display:block;margin:auto">';d4.style.display='flex';d4.style.alignItems='center';
 });
