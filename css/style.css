@@ -226,6 +226,35 @@ tr.detail b{color:var(--fg)}
 td.yes{color:var(--teal);font-weight:700}
 td.no{color:var(--muted)}
 td.partial{color:var(--amber)}
+
+/* research: paper links + competitive analysis */
+.plink{font-family:var(--mono);font-size:11px;color:var(--teal);white-space:nowrap;margin-left:6px;text-decoration:none;border-bottom:1px solid currentColor}
+.plink:hover{color:var(--amber)}
+#appSources a{color:var(--teal)}
+td.gapcell{color:var(--rose)}
+.gap-them h3{color:var(--rose)}
+.gap-us{border-color:var(--teal)}
+.gap-us h3{color:var(--teal)}
+.gap-them ul,.gap-us ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px}
+table.mx{min-width:900px;font-size:13px}
+table.mx th,table.mx td{text-align:center;padding:8px;vertical-align:middle}
+table.mx th:first-child,table.mx td:first-child{text-align:left;font-weight:600;min-width:230px}
+table.mx th{letter-spacing:.02em;text-transform:none;font-size:11px}
+table.mx .es{background:color-mix(in srgb,var(--teal) 14%,transparent)}
+table.mx th.es{color:var(--teal);font-weight:700}
+.mk-y{color:var(--teal);font-weight:700}
+.mk-p{color:var(--amber);font-weight:700}
+.mk-n{color:var(--muted);opacity:.55}
+.mxlegend{font-size:12px;color:var(--muted);margin-top:10px}
+.mxlegend span{margin:0 4px 0 10px}.mxlegend span:first-child{margin-left:0}
+.mxstats{margin-top:14px}
+.mxstats .panel{display:flex;flex-direction:column;gap:2px;padding:14px 18px}
+.mxstats b{font-family:var(--display);font-size:26px;color:var(--teal)}
+.reason{display:flex;flex-direction:column;gap:6px;padding:16px}
+.reason .rn{font-family:var(--mono);font-size:12px;color:var(--teal);letter-spacing:.1em}
+.reason h3{font-size:16px}
+.reason p{font-size:13px;color:var(--muted)}
+.reason.hl{border-color:var(--teal);background:color-mix(in srgb,var(--teal) 10%,var(--panel))}
 tr.us td{background:color-mix(in srgb,var(--teal) 8%,transparent)}
 tr.us td:first-child{color:var(--amber);font-weight:700}
 

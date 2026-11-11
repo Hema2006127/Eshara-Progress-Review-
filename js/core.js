@@ -59,7 +59,13 @@ const PAGES=[
   "name": "Research",
   "slides": [
    "Research: literature review",
-   "Research: comparison"
+   "Research: comparison",
+   "Research: market gap",
+   "Research: apps compared",
+   "Research: comparison 1 · translation, avatar and AI",
+   "Research: comparison 2 · learning, streak, competition and kids",
+   "Research: comparison 3 · chat, live communication and services",
+   "Research: what makes Eshara different"
   ]
  },
  {
