@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AI · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="7">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="7" aria-label="AI: headline result">
+  <div class="wrap">
+    <div><p class="eyebrow ai">Part 7 · AI · headline result</p><h2>First training run of the letter model · 1 Nov 2026</h2></div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px">
+      <div class="big-row">
+        <div><div class="bignum before">0%</div><div class="bcap">Before training</div></div>
+        <svg width="110" height="40" viewBox="0 0 120 40" aria-hidden="true"><path d="M0 20 H100" style="stroke:var(--amber)" stroke-width="4" fill="none"/><path d="M92 6 L114 20 L92 34" style="stroke:var(--amber)" stroke-width="4" fill="none" stroke-linejoin="round"/></svg>
+        <div><div class="bignum after" id="counter">93.3%</div><div class="bcap">Accuracy on the test set</div></div>
+      </div>
+      <div class="no-print"><button class="btn ghost" id="replay">Replay count</button></div>
+      <div class="g2">
+        <div class="panel"><b style="font-family:var(--display);font-size:26px;color:var(--teal);display:block">+30,400</b><p class="muted">landmark samples the team recorded on camera with SignCollector</p></div>
+        <div class="panel"><b style="font-family:var(--display);font-size:26px;color:var(--teal);display:block">32 → 31</b><p class="muted">classes, after merging the two duplicate folders for the letter ي (ya / yaa)</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: dashboard">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow ai">Part 7 · AI · dashboard</p><h2>Letter model at a glance</h2></div><p class="hint">Click a tile or a chart</p></div>
+    <div class="kpis" id="kpis">
+      <button class="kpi hl" data-info="Best validation accuracy during training, on the 15% validation split."><div class="klabel">Validation accuracy</div><div class="kval">92.9%</div></button>
+      <button class="kpi" data-info="Arabic letters after merging the two ي classes."><div class="klabel">Classes</div><div class="kval">31</div></button>
+      <button class="kpi" data-info="A full run on a regular CPU; no GPU needed."><div class="klabel">Training time</div><div class="kval">10–15 min</div></button>
+      <button class="kpi" data-info="Estimated share of usable training data that came from the team rather than ArASL."><div class="klabel">Team share of data</div><div class="kval">≈68%</div></button>
+    </div>
+    <p class="muted" id="kinfo" aria-live="polite" style="font-size:14px">Best validation accuracy during training, on the 15% validation split.</p>
+    <div class="dash">
+      <div class="panel">
+        <div class="ptl"><h3>Data sources</h3><div class="filters no-print" role="group" aria-label="Bar mode"><button class="chip" aria-pressed="true" data-mode="count">Samples</button><button class="chip" aria-pressed="false" data-mode="share">Share of usable</button></div></div>
+        <div class="bars" id="srcBars"></div>
+        <p class="muted" style="font-size:12px;margin-top:12px">Usable ArASL is an estimate: MediaPipe found a hand in about 26% of a 150-image sample.</p>
+      </div>
+      <div class="panel"><div class="ptl"><h3>Data split</h3></div>
+        <div class="donut-wrap"><svg viewBox="0 0 160 160" id="donut" role="img" aria-label="Train 75%, validation 15%, test 10%"></svg><div class="legend" id="legend"></div></div></div>
+      <div class="panel acc"><div class="ptl"><h3>Accuracy</h3><span class="tag warn">Nov 1 run</span></div>
+        <svg viewBox="0 0 300 150" id="accChart" role="img" aria-label="Validation 92.9%, test 93.3%"></svg></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: how it works">
+  <div class="wrap">
+    <div><p class="eyebrow ai">Part 7 · AI · pipeline</p><h2>From a hand on camera to a letter</h2></div>
+    <div class="pipe" id="pipe"></div>
+    <div class="how-body">
+      <div class="panel handbox" style="max-width:none"><svg id="hand2" viewBox="0 100 580 600" role="img" aria-label="Hand landmarks linked to the input vector"></svg><div class="lm-label" id="lmLabel2">Tap a point to see its 3 numbers</div></div>
+      <div class="panel">
+        <h3 id="stageTitle">Stage</h3>
+        <p class="muted" id="stageText" style="min-height:66px"></p>
+        <div class="vec" id="vec" aria-label="126-number input vector"></div>
+        <div class="vec-legend"><span>Top 3 rows: hand 1 (x, y, z)</span><span>Bottom 3 rows: hand 2</span><span>21 × 3 × 2 = <b class="mono" style="color:var(--fg)">126</b></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: architecture">
+  <div class="wrap">
+    <div><p class="eyebrow ai">Part 7 · AI · architecture</p><h2>A small MLP that trains on a CPU</h2></div>
+    <div class="arch">
+      <div class="panel net">
+        <div class="ptl"><h3 id="layerTitle">LetterClassifierMLP</h3><button class="btn no-print" id="fwd">Run a forward pass</button></div>
+        <svg id="net" viewBox="0 0 640 340" role="img" aria-label="Layers of 126, 512, 256, 128 and 31"></svg>
+        <p class="muted" id="layerText" style="min-height:44px">Hover or tap a layer. The diagram shows a sample of neurons, not all of them.</p>
+      </div>
+      <div class="panel">
+        <h3>Training setup</h3>
+        <div class="fact"><span>Input</span><b>126 numbers</b></div>
+        <div class="fact"><span>Hidden layers</span><b>512 → 256 → 128</b></div>
+        <div class="fact"><span>Per layer</span><b>GELU · BatchNorm · Dropout</b></div>
+        <div class="fact"><span>Output</span><b>31 letters</b></div>
+        <div class="fact"><span>Split</span><b>75 / 15 / 10</b></div>
+        <div class="fact"><span>Epochs</span><b>up to 60, stop after 12 flat</b></div>
+        <div class="fact"><span>Saved as</span><b>best_letter_model.pt</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: data">
+  <div class="wrap">
+    <div><p class="eyebrow ai">Part 7 · AI · data</p><h2>Two sources across 31 letters</h2></div>
+    <div class="g2">
+      <div class="panel" style="display:flex;flex-direction:column;gap:10px">
+        <span class="tag warn" style="align-self:flex-start">Team samples · Supabase</span>
+        <div class="srcnum" style="color:var(--amber)">30,400</div>
+        <p>samples from <b>608 rounds</b> of 50, recorded on camera with SignCollector</p>
+        <p class="muted">Each sample is an <code>.npy</code> file of 126 numbers. Target: 100 samples per letter per member.</p>
+      </div>
+      <div class="panel" style="display:flex;flex-direction:column;gap:10px">
+        <span class="tag" style="align-self:flex-start">ArASL · Kaggle</span>
+        <div class="srcnum">54,049</div>
+        <p>JPG images at 64×64 pixels</p>
+        <div class="bars" id="funnel"></div>
+        <button class="btn ghost no-print" id="funnelBtn" style="align-self:flex-start">Show what MediaPipe keeps</button>
+      </div>
+    </div>
+    <div class="note"><span>More than half of the data that reached training came from team samples. The <code>Dataset_Ready</code> folder (67,759 images) was not used: it is a resized, re-split copy of the same ArASL images.</span></div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: training workflow">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow ai">Part 7 · AI · workflow</p><h2>From collection to a trained model in 9 steps</h2></div>
+      <div class="stack"><span class="tag">MediaPipe</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span><span class="tag">Supabase</span><span class="tag">FastAPI</span><span class="tag">Tkinter</span><span class="tag">PyInstaller</span></div></div>
+    <div class="steps no-print" id="steps"></div>
+    <div class="panel step-detail" id="stepDetail" aria-live="polite"></div>
+    <div class="no-print" style="display:flex;gap:10px"><button class="btn ghost" id="stepPrev">Previous step</button><button class="btn" id="stepNext">Next step</button></div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: problems and fixes">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow ai">Part 7 · AI · problems and fixes</p><h2>What broke and how we fixed it</h2></div><button class="btn ghost no-print" id="openAll">Show all fixes</button></div>
+    <div class="probs" id="probs"></div>
+  </div>
+</section>
+
+<section class="slide" data-part="7" aria-label="AI: next steps">
+  <div class="wrap">
+    <div><p class="eyebrow ai">Part 7 · AI · next steps</p><h2>What we do next</h2></div>
+    <div class="g2">
+      <div class="todo" id="todo">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><h3>Action items</h3><span class="mono muted" id="todoCount">0 / 5</span></div>
+        <div class="progress"><div id="todoBar"></div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="caveat"><b>Read 93.3% with care</b><p>The test set comes from the same people who collected the data. Accuracy may be lower with new signers or different lighting, so the next real test is a live session with people who never took part.</p></div>
+        <div class="panel"><h3>Toward words</h3><p class="muted" style="margin-top:6px;font-size:14px">The plan’s next model recognizes words from 30-frame sequences with a Transformer on landmarks, the approach of paper 2.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/hand.js"></script>
+<script src="js/ai.js"></script>
+</body>
+</html>

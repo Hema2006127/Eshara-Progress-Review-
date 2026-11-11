@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mobile · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="3">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="3" aria-label="Mobile: status">
+  <div class="wrap">
+    <div><p class="eyebrow">Part 3 · Mobile app · status now</p><h2>The full user journey runs end to end</h2></div>
+    <div class="panel" style="display:flex;flex-direction:column;gap:14px">
+      <div class="journey">
+        <span class="jstep">Splash</span><span class="jarrow">→</span><span class="jstep">Welcome</span><span class="jarrow">→</span><span class="jstep">Log in / Sign up</span><span class="jarrow">→</span><span class="jstep">Home</span><span class="jarrow">→</span><span class="jstep" style="background:var(--cta);color:var(--cta-fg);border-color:var(--cta)">Sign to text · live AI</span>
+      </div>
+      <p class="muted" style="font-size:14px">Sign-to-text works letter by letter and is connected to the real AI model. The other sections are shown as “coming soon” pages.</p>
+    </div>
+    <div class="g3 done">
+      <div class="panel"><h3><span class="tag">Design</span></h3><ul><li>Eshara glassmorphism system in light and dark, following the phone setting</li><li>Right-to-left layout with Readex Pro and IBM Plex Sans Arabic</li><li>A welcome character that waves “أهلًا”</li></ul></div>
+      <div class="panel"><h3><span class="tag">Accounts</span></h3><ul><li>Login, kids login, and the first sign-up step (date of birth; under 13 becomes a kids account)</li><li>API layer ready: secure token storage, automatic refresh, Arabic error messages</li><li>Runs on test data until the backend is connected</li></ul></div>
+      <div class="panel"><h3><span class="tag">Home</span></h3><ul><li>Matches the design: greeting, SOS, day streak and XP, translation cards, daily challenge</li><li>Animated glass navigation bar with 5 tabs; translate is the big center button (order changed by Ahmed)</li></ul></div>
+    </div>
+    <div class="panel quality"><span class="big">41</span><div><b>automated tests passing</b><p class="muted" style="font-size:14px"><code>flutter analyze</code> reports no issues</p></div></div>
+  </div>
+</section>
+
+<section class="slide" data-part="3" aria-label="Mobile: sign to text">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 3 · Mobile app · most important feature</p><h2>How sign-to-text behaves on the phone</h2></div><p class="hint">Move the confidence slider and try the buttons</p></div>
+    <div class="sim">
+      <div class="phone">
+        <div class="cam"><span class="live">● LIVE · auto-reading</span><span class="conf" id="confTag">92%</span><span class="sign" id="camSign">م</span></div>
+        <div>
+          <label for="conf" class="mono muted" style="font-size:12px">Model confidence for the current sign</label>
+          <input type="range" id="conf" min="0" max="100" value="92">
+          <div class="zones" aria-hidden="true"><div></div><div></div><div></div></div>
+          <div class="zl" aria-hidden="true"><span>0–50</span><span>50–80 · ask</span><span>80+ · write</span></div>
+        </div>
+        <div class="ask" id="ask" hidden><span>Is this letter correct? <b id="askL">م</b></span><span style="display:flex;gap:6px"><button class="btn" id="yes" style="padding:6px 12px">Yes</button><button class="btn ghost" id="no" style="padding:6px 12px">No</button></span></div>
+        <div class="textbox" id="tbox" aria-live="polite"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn" id="showSign">Show the sign</button>
+          <button class="btn ghost" id="lower">Lower hand</button>
+        </div>
+        <div class="tools-row"><button id="tSpace">Space</button><button id="tDel">Delete letter</button><button id="tCopy">Copy</button></div>
+        <p class="mono muted" id="simMsg" style="font-size:12px;min-height:18px"></p>
+      </div>
+      <div class="panel">
+        <div class="rule"><i>01</i><div><b>Reads on its own</b><span>The camera keeps reading while it is open; nothing to press</span></div></div>
+        <div class="rule"><i>02</i><div><b>Above 80%: written immediately</b><span>The letter goes straight into the text box and builds the word</span></div></div>
+        <div class="rule"><i>03</i><div><b>Between 50% and 80%: asks first</b><span>“Is this letter correct?” and the user answers yes or no</span></div></div>
+        <div class="rule"><i>04</i><div><b>A held hand does not repeat</b><span>Holding the same sign writes it once. To repeat it (as in “مم”), lower the hand and raise it again</span></div></div>
+        <div class="rule"><i>05</i><div><b>Finds the server by itself</b><span>Discovers the AI server on the same Wi-Fi, with a manual address as a fallback</span></div></div>
+        <div class="rule"><i>06</i><div><b>No demo mode</b><span>Without a server, no letter is ever written</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

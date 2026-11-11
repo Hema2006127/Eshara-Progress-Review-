@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Research · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="6">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="6" aria-label="Research: literature review">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 6 · Research</p><h2>Literature review: 10 papers</h2></div>
+      <p class="muted" style="font-size:13px;max-width:46ch">Filtered by: published 2021 or later · indexed journal, Q1/Q2 first · well cited · tied to a model or dataset in our plan</p></div>
+    <div class="filters no-print" id="litFilters" role="group" aria-label="Filter by plan part"></div>
+    <div class="tablebox">
+      <table><thead><tr><th style="width:40px">#</th><th>Paper</th><th>Venue · year</th><th>Metrics</th><th>Plan part</th></tr></thead><tbody id="litBody"></tbody></table>
+    </div>
+    <p class="muted" style="font-size:12px">Click a row for its dataset, model, contribution and limitation. IF and CiteScore are approximate and still being checked in JCR and Scopus.</p>
+  </div>
+</section>
+
+<section class="slide" data-part="6" aria-label="Research: comparison">
+  <div class="wrap">
+    <div><p class="eyebrow">Part 6 · Research</p><h2>How Eshara compares with the closest work</h2></div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>System</th><th>Input</th><th>Recognizes</th><th>Landmarks</th><th>Real-time app</th><th>Unseen-signer test</th><th>Arabic variety</th></tr></thead>
+        <tbody>
+          <tr class="us"><td>Eshara (ours)</td><td>MediaPipe hands, 126 values</td><td>31 letters</td><td class="yes">Yes</td><td class="yes">Yes, Flutter app</td><td class="partial">Planned</td><td>Team data + ArASL</td></tr>
+          <tr><td>Paper 2 · Alyami 2024</td><td>Hands + face keypoints</td><td>100 words</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Yes, big gap</td><td>KArSL (Saudi/unified)</td></tr>
+          <tr><td>Paper 3 · Podder 2023</td><td>RGB video frames</td><td>Words</td><td class="no">Crops only</td><td class="no">No</td><td class="yes">Yes</td><td>Arabic</td></tr>
+          <tr><td>Paper 4 · Alshanik 2026</td><td>Hands, face, body (255)</td><td>112 words</td><td class="yes">Yes</td><td class="no">No</td><td class="no">Not reported</td><td>KArSL</td></tr>
+          <tr><td>Paper 5 · Alharthi 2023</td><td>Images</td><td>32 letters</td><td class="no">No</td><td class="no">No</td><td class="no">Not reported</td><td>ArSL2018</td></tr>
+          <tr><td>Paper 6 · Mosa 2023</td><td>Text and speech</td><td>Text → gloss → avatar</td><td class="no">n/a</td><td class="yes">Yes, Flutter</td><td class="no">n/a</td><td>Egyptian</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="g3">
+      <div class="panel"><h3>Where we stand out</h3><p class="muted" style="font-size:14px;margin-top:6px">A real-time mobile app on landmarks, with our own growing dataset; most papers stop at offline accuracy.</p></div>
+      <div class="panel"><h3>Where we lag</h3><p class="muted" style="font-size:14px;margin-top:6px">Letters only so far, and no unseen-signer evaluation yet; papers 2 and 3 show this is where accuracy drops.</p></div>
+      <div class="panel"><h3>What to add</h3><p class="muted" style="font-size:14px;margin-top:6px">A Metrics column against paper 5 on ArSL2018, and a stronger landmarks-based letters paper in a Q1/Q2 journal.</p></div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/research.js"></script>
+</body>
+</html>

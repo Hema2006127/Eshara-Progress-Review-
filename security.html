@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Security · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="5">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="5" aria-label="Security: scenarios">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 5 · Security</p><h2>Six security scenarios across the platform</h2></div><p class="hint">Pick a scenario</p></div>
+    <p class="lede" style="font-size:16px">Goal: protect user data and enforce access control on the server. Each track (web frontend, backend, AI) has its own rules to implement; security testing runs across all features once the system is integrated.</p>
+    <div class="dtabs no-print" id="secTabs" role="group" aria-label="Choose a scenario"></div>
+    <div class="secgrid">
+      <div class="panel">
+        <h3 id="scTitle"></h3>
+        <p class="muted" id="scWhat" style="font-size:14px;margin-top:4px"></p>
+        <ol class="scsteps" id="scSteps"></ol>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-width:0">
+        <div class="tm"><div class="tm-threat"><span class="lbl c">Threat</span><b id="scThreat"></b><span id="scThreatD"></span></div><div class="tm-fix"><span class="lbl f">Mitigation</span><b id="scFix"></b><span id="scFixD"></span></div></div>
+        <div class="panel" id="scTracks"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="5" aria-label="Security: testing checklist">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 5 · Security</p><h2>Testing checklist: 15 checks after integration</h2></div>
+      <div class="filters no-print" id="chkFilters" role="group" aria-label="Filter checks"></div></div>
+    <div class="g4" style="grid-template-columns:repeat(3,1fr)">
+      <div class="panel"><b class="srcnum" style="font-size:44px;color:var(--amber)">15</b><p class="muted" style="font-size:14px">checks, all <b style="color:var(--fg)">pending integration</b>; run by the security lead</p></div>
+      <div class="panel"><h3>Already in the mobile app</h3><p class="muted" style="font-size:14px;margin-top:6px">Secure token storage and automatic token refresh in the API layer (Part 3)</p></div>
+      <div class="panel"><h3>Already in the AI design</h3><p class="muted" style="font-size:14px;margin-top:6px">Landmarks are extracted on the device and only features reach the AI service (Diagram 4)</p></div>
+    </div>
+    <div class="tablebox"><table><thead><tr><th style="width:40px">#</th><th>Rule to verify</th><th>Scenario</th><th>Test</th><th>Status</th></tr></thead><tbody id="chkBody"></tbody></table></div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/security.js"></script>
+</body>
+</html>

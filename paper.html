@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Paper · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="1">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="1" aria-label="Paper: abstract">
+  <div class="wrap">
+    <p class="eyebrow">Part 1 · Paper</p>
+    <div class="paper">
+      <div class="ptitle">
+        <h2>Eshara: Bidirectional Arabic Sign Language Communication with Landmark-Based Recognition on Web and Mobile</h2>
+        <p class="auth">Eshara team · Supervised by Dr. Ahmed Hamza · Teaching assistant Eng. Basant Mohamed</p>
+      </div>
+      <div>
+        <h4>Abstract</h4>
+        <p>Deaf and hard-of-hearing Arabic speakers still lack everyday tools that translate between Arabic sign language and spoken or written Arabic. Eshara is a web and mobile platform that translates in both directions: sign to text through the camera, and text or voice to sign through an animated avatar, with a dictionary, gamified learning, chat and an emergency mode in its design.</p>
+        <p style="margin-top:12px">Recognition runs on hand landmarks rather than raw images. MediaPipe extracts 21 points per hand, and a compact multilayer perceptron classifies the resulting 126-value vector into 31 Arabic letters.</p>
+      </div>
+      <div>
+        <h4>Results so far</h4>
+        <p>Trained on the public ArASL images combined with 30,400 landmark samples the team recorded with a purpose-built collection tool, the letter model reaches 93.3% accuracy on a held-out test set and trains in 10 to 15 minutes on a CPU. The Flutter app already uses it for live, letter-by-letter sign-to-text translation, and the web app delivers the full interface with mocked services.</p>
+        <h4 style="margin-top:16px">Keywords</h4>
+        <div class="kw"><span>Arabic Sign Language</span><span>MediaPipe</span><span>Hand landmarks</span><span>MLP</span><span>Accessibility</span><span>Flutter</span><span>Next.js</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="1" aria-label="Paper: problem, approach, contributions">
+  <div class="wrap">
+    <div><p class="eyebrow">Part 1 · Paper</p><h2>Problem, approach and contributions</h2></div>
+    <div class="col3">
+      <div class="panel"><div class="num">01</div><h3 style="margin-top:10px">Problem</h3>
+        <ul><li>Communication between deaf and hearing people depends on interpreters who are rarely available</li><li>Arabic sign language tools are few, and most published systems are research prototypes, not daily apps</li><li>Arabic datasets come from few signers and mostly from Saudi or unified sign language</li></ul></div>
+      <div class="panel"><div class="num">02</div><h3 style="margin-top:10px">Approach</h3>
+        <ul><li>Landmarks instead of pixels, so recognition stays light enough for real-time use</li><li>One shared AI service used by a Flutter app and a Next.js web app</li><li>Our own data collection tool to grow the dataset beyond public images</li></ul></div>
+      <div class="panel"><div class="num">03</div><h3 style="margin-top:10px">Contributions</h3>
+        <ul><li>A working sign-to-text pipeline from camera to letters, connected to a trained model</li><li>A team dataset of 30,400 landmark samples across 31 letters</li><li>A complete UX specification: 10 user-flow diagrams, Kids Mode and emergency flows</li></ul></div>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+
+</body>
+</html>

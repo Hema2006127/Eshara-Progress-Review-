@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Web · Eshara Progress Review</title>
+<script>try{const t=localStorage.getItem('eshara-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-part="4">
+<div class="deck">
+  <nav class="parts" id="parts" aria-label="Parts"></nav>
+  <main class="stage" id="stage">
+
+<section class="slide" data-part="4" aria-label="Web: landing page">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 4 · Web</p><h2>Landing page: 9 sections, Arabic and English, light and dark</h2></div>
+      <div class="legend-mini"><span class="tag">Implemented</span><span class="tag warn">Demo / mock</span><span class="tag off">Not connected</span></div></div>
+    <div class="webgrid">
+      <div class="secs" id="secs"></div>
+      <figure style="margin:0"><img class="shot" id="secShot" src="img/web/hero.jpg" alt="Landing page section" loading="lazy"><figcaption class="cap" id="secCap"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-part="4" aria-label="Web: app and translate page">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Part 4 · Web</p><h2>The web app: home and the translate workspace</h2></div><p class="hint">Click a state to see its screen</p></div>
+    <div class="webgrid">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel">
+          <h3>Camera tab · <span class="muted" style="font-weight:500">sign to text</span></h3>
+          <div class="states" id="camStates" style="margin-top:10px"></div>
+          <p class="muted" id="camText" style="font-size:14px;margin-top:10px;min-height:60px"></p>
+        </div>
+        <div class="panel">
+          <h3>Text / voice tab · <span class="muted" style="font-weight:500">text to sign</span></h3>
+          <ul style="margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:14px">
+            <li>Arabic input up to 200 characters with a live counter; browser speech recognition for voice <span class="tag">Implemented</span></li>
+            <li>3D avatar stage in Three.js, falls back to an image without WebGL <span class="tag warn">Demo</span></li>
+            <li>Sign timeline chips, playback speed 0.5× / 1× / 1.5×, suggested phrases</li>
+          </ul>
+        </div>
+        <div class="note"><span>The interface is complete and responsive, but it is not yet connected to the .NET backend or the AI service: home history, progress and the camera transcript use built-in sample data.</span></div>
+      </div>
+      <figure style="margin:0"><img class="shot" id="camShot" src="img/web/cam-live.jpg" alt="Web translate page" loading="lazy"><figcaption class="cap" id="camCap"></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+  </main>
+  <nav class="rail" aria-label="Slides">
+    <button class="navbtn" id="prev" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="dots" id="dots"></div>
+    <span class="count" id="count">1 / 1</span>
+    <button class="navbtn" id="theme" aria-label="Switch light or dark theme" title="Light / dark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="navbtn" id="next" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+</div>
+<div class="lightbox" id="lb" hidden role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="lbImg" alt="">
+  <div class="lbbar"><span class="mono muted" id="lbCap"></span><button class="btn" id="lbClose">Close</button></div>
+</div>
+
+
+<script src="js/core.js"></script>
+<script src="js/web.js"></script>
+</body>
+</html>
